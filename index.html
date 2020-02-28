@@ -14,7 +14,7 @@
 <body>
 
     <div id="root">
-        <button type="button" onclick="makeCorsRequest()">Test</button>
+        <button type="button" class="pushTest">Test</button>
 
         <button id="tombol">Ambil Data</button>
         <p>Hasil: 
@@ -40,6 +40,26 @@
             hasilNode.innerHTML = request.responseText;
         }
         tombolNode.addEventListener("click",getAJAX);
+    </script>
+
+    <script>
+        const url = 'http://api.wibs.sch.id/v2/meal/post/datatable.food-category';
+        const date = new Date();
+        const data = {
+            id: 126,
+            name: 'Kangkung',
+            created_at: date.toLocaleDateString(),
+            updated_at: date.toLocaleDateString(),
+            type: 'test'
+        };
+        var $test = document.getElementsByClassName('pushTest');
+
+        $('.pushTest').click(function() {
+            $.post(url, data, function(data, status) {
+                console.log(data, status)
+            })
+        })
+
     </script>
     
 </body>
