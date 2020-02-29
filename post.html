@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github User</title>
+</head>
+<body>
+
+    <h1>GitHub Users</h1>
+    <ul id="users">
+        <form action="" method="POST" class="form">
+            <fieldset>
+            <legend>Add Data</legend>
+            <div id="nama-sayur-group" class="form-group">
+                <label>Nama Sayur:</label>
+                <input type="text" class="nama_sayur" name="namaSayur" placeholder="nama sayur ....." />
+            </div>
+
+            <div id="type-group" class="form-group">
+                <label for="">type</label>
+                <select name="typeSayur" id="type" class="type_sayur">
+                    <option value="appetizer">Appetizer</option>
+                    <option value="main-course">Main Course</option>
+                    <option value="dessert">Dessert</option>
+                </select>
+            </div>
+            
+            <input type="submit" class="submit" name="submit" value="Kirim Data" />
+            
+            </fieldset>
+        </form>
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+        var form = document.getElementsByClassName('form')
+
+        $(document).ready(function() {
+            // process the form 
+            $(form).submit(function(event) {
+
+                // var token = 'geSzgVahOlowulcgHEtQmu9Ybofk1lRnPFd3V5atSEu1SD1dt2';
+
+                // get the form data
+                // there are many ways to get this data using jQuery (you can use the class or id also)
+                var formData = {
+                    // 'idNama' : $('input[name=id-nama]').val(),
+                    // 'namaDepan' : $('.nama_depan').val(),
+                    // 'namaBelakang' : $('.nama_belakang').val(),
+                    // 'job' : $('.pekerjaan').val()
+
+                    'name' : $('.nama_sayur').val(),
+                    'type' : $('.type_sayur').val()
+                };
+
+                // process the form
+                $.ajax({
+                    type : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                    url: 'http://api.wibs.sch.id/v2/meal/post/datatable.food-category',
+                    // url : 'http://api.wibs.sch.id/v2/meal/post/food-category.store', // the url where we want to POST
+                    data : formData, // our data object,
+                    dataType : 'json', // what type of data do we expect back from the server
+                    // headers : "Application-Token : geSzgVahOlowulcgHEtQmu9Ybofk1lRnPFd3V5atSEu1SD1dt2"
+                    headers: {
+                        // key: "Application-Token",
+                        // value : 'geSzgVahOlowulcgHEtQmu9Ybofk1lRnPFd3V5atSEu1SD1dt2',
+                        // type: 'text'
+                        'Application-Token' : 'geSzgVahOlowulcgHEtQmu9Ybofk1lRnPFd3V5atSEu1SD1dt2'
+                    }
+                    // encode : true
+                })
+                    // using the promise callback
+                    .done(function(data) {
+                        // log data to the console so we can see
+                        console.log(data)
+                    })
+
+                    .fail(function(data) {
+                        // show any errors
+                        // best to remove for production
+                        console.log(data);
+                    })
+
+                // stop the form from submitting the normal way and refreshing the page
+                event.preventDefault();
+            })
+        })
+    </script>
+
+    <script>
+        // // create an element
+        // const createNode = (elem) => {
+        //     return document.createElement(elem);
+        // };
+
+        // // append an element to parent
+        // const appendNode = (parent, elem) => {
+        //     parent.appendChild(elem);
+        // }
+
+        // // List Element
+        // const ul = document.querySelector('#users');
+
+        // // GitHub API URL
+        // const url = 'https://api.github.com/users';
+
+        // // make the API call
+        // fetch(url)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         // iterate over users
+        //         data.map((user) => {
+        //             // create the elements
+        //             let li = createNode('li'),
+        //                 img = createNode('img'),
+        //                 span = createNode('span');
+        //             img.src = user.avatar_url;
+        //             span.innerText = user.login;
+        //             // append all elements
+        //             appendNode(li, img);
+        //             appendNode(li, span);
+        //             appendNode(ul, li);
+        //         });
+        //     }).catch(err => {
+        //         console.error('Error: ', err);
+        //     });
+
+    </script>
+    
+
+    <!-- <script>
+        const url = 'https://reqres.in/api/users';
+
+        // post body data 
+        const user = {
+            first_name: 'John',
+            last_name: 'Doe',
+            job_title: 'Blogger'
+        };
+
+        // create request object
+        const request = new Request(url, {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        });
+
+        // pass request object to `fetch()`
+        fetch(request)
+            .then(res => res.json())
+            .then(res => console.log(res));
+    </script> -->
+
+</body>
+</html>
