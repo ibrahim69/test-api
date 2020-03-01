@@ -23,36 +23,8 @@
             <h1>GitHub GET</h1>
 
             <div class="button">
-                <button type="button" class="btn btn-success create">New</button>
+                <button type="button" class="btn btn-success create" data-toggle="modal" data-target="#modal-new-item">New</button>
                 <button type="button" class="btn btn-danger edit">Edit</button>
-            </div>
-
-            <div class="new-item">
-                <form action="" method="POST" class="form-post">
-                    <fieldset>
-                        <legend>Add New Data</legend>
-                        <div id="nama-sayur-group" class="form-group row">
-                            <label class="col-sm-2 col-form-label">Nama:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="nama-sayur form-control" name="namaSayur" placeholder="nama sayur ....." />
-                            </div>
-                        </div>
-            
-                        <div id="type-group" class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="">Type:</label>
-                            <div class="col-sm-10">
-                                <select name="typeSayur" id="type" class="type-sayur form-control">
-                                    <option value="appetizer">Appetizer</option>
-                                    <option value="main-course">Main Course</option>
-                                    <option value="dessert">Dessert</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <button type="submit" class="submit btn btn-light" name="submit">Add New</button>
-                    
-                    </fieldset>
-                </form>
             </div>
 
             <table id="example" class="display" style="width: 100%;">
@@ -71,6 +43,37 @@
                     </tr>
                 </tfoot>
             </table>
+
+            <div class="modal fade" id="modal-new-item" aria-hidden="true" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form action="" class="form-post">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add New Data</h5>
+                            </div>
+
+                            <div class="modal-body">
+                                <div id="nama-sayur-group" class="form-group">
+                                    <label class="col-form-label">Nama:</label>
+                                    <input type="text" class="nama-sayur form-control" name="namaSayur" placeholder="nama sayur ....."  required/>
+                                    <span id="error_nama_sayur" class="text-danger"></span>
+                                </div>
+                    
+                                <div id="type-group" class="form-group">
+                                    <label class="col-form-label" for="">Type:</label>
+                                    <select name="typeSayur" id="type" class="type-sayur form-control">
+                                        <option value="appetizer">Appetizer</option>
+                                        <option value="main-course">Main Course</option>
+                                        <option value="dessert">Dessert</option>
+                                    </select>
+                                </div>
+                                
+                                <button type="submit" class="submit btn btn-light" name="submit">Add New</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
